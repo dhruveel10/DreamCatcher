@@ -1,20 +1,27 @@
 package edu.vt.cs5254.dreamcatcher
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import java.util.Date
 import java.util.UUID
 
+@Entity(tableName = "dream")
 data class Dream(
-    val id: UUID = UUID.randomUUID(),
+    @PrimaryKey val id: UUID = UUID.randomUUID(),
     val title: String = "",
     val lastUpdated: Date = Date(),
 ) {
+    @Ignore
     var entries = listOf(DreamEntry(kind = DreamEntryKind.CONCEIVED, dreamId = id))
     val isFulfilled get() = entries.any { it.kind == DreamEntryKind.FULFILLED }
     val isDeferred get() = entries.any { it.kind == DreamEntryKind.DEFERRED }
 }
 
+@Entity(tableName = "dream_entry")
 data class DreamEntry(
-    val id: UUID = UUID.randomUUID(),
+    @PrimaryKey @ColumnInfo(name = "entryId") val id: UUID = UUID.randomUUID(),
     val text: String = "",
     val kind: DreamEntryKind,
     val dreamId: UUID
