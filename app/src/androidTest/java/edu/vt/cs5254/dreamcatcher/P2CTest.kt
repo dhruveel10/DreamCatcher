@@ -97,7 +97,7 @@ class P2CTest {
                             hasDescendant(
                                 allOf(
                                     withId(R.id.list_item_image),
-                                    matchesDrawable(R.drawable.dream_deferred_icon),
+                                    matchesDrawable(R.drawable.ic_dream_deferred),
                                     withEffectiveVisibility(Visibility.VISIBLE)
                                 )
                             )
@@ -197,7 +197,7 @@ class P2CTest {
                     containsString(Intent.EXTRA_TEXT),
                     allOf(
                         startsWith("Swim with dolphins"),
-                        containsString("Last updated 2022-09-10"),
+                        containsString("Last updated 2023-09-10"),
                         containsString("Reflections:"),
                         containsString(" * One"),
                         containsString(" * Two"),
@@ -224,7 +224,7 @@ class P2CTest {
                     containsString(Intent.EXTRA_TEXT),
                     allOf(
                         startsWith("Travel to every continent"),
-                        containsString("Last updated 2022-09-10"),
+                        containsString("Last updated 2023-09-10"),
                         not(containsString("Reflections:")),
                         not(containsString(" * ")),
                         endsWith("This dream has been Deferred.")
@@ -266,10 +266,11 @@ class P2CTest {
 
         IntentMonitorRegistry.getInstance().addIntentCallback(object : IntentCallback {
             override fun onIntentSent(intent: Intent?) {
+                @Suppress("Deprecation")
                 val uri: Uri = intent?.getParcelableExtra(MediaStore.EXTRA_OUTPUT) ?: return
                 val icon = BitmapFactory.decodeResource(
                     tgtContext.resources,
-                    R.drawable.dream_fulfilled_icon
+                    R.drawable.ic_dream_fulfilled
                 )
                 val os = tgtContext.contentResolver.openOutputStream(uri)
                 os?.run {
