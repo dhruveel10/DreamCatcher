@@ -60,7 +60,8 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1") // BNRG Listing 9.1
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2") // BNRG Listing 10.1
     implementation("androidx.recyclerview:recyclerview:1.3.0") // BNRG Listing 10.5
-    implementation("androidx.test.espresso:espresso-contrib:3.5.1") // for Project 2 testing
+    implementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    implementation("androidx.room:room-common:2.5.2") // for Project 2 testing
     debugImplementation("androidx.fragment:fragment-testing:1.6.1") // for Project 2 testing
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") // BNRG Listing 12.1

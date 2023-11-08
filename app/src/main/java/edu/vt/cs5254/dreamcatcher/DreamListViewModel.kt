@@ -1,36 +1,38 @@
 package edu.vt.cs5254.dreamcatcher
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class DreamListViewModel : ViewModel() {
 
-    val dreams = mutableListOf<Dream>()
+    private val _dreams: MutableStateFlow<List<Dream>> = MutableStateFlow(emptyList())
+    val dreams
+        get() = _dreams.asStateFlow()
+
+    private val repository = DreamRepository.get()
+
+    suspend fun insertDream(dream: Dream){
+        repository.insertDream(dream)
+    }
+
+     fun deleteDream(dream: Dream){
+         viewModelScope.launch {
+             repository.deleteDream(dream)
+         }
+    }
 
     init {
-        (0..99).forEach {
-            val dream = Dream(
-                title = "Dream #$it",
-            )
-            repeat(it % 4) { reflectionNum ->
-                dream.entries += DreamEntry(
-                    kind = DreamEntryKind.REFLECTION,
-                    text = "Reflection $reflectionNum",
-                    dreamId = dream.id
-                )
+        viewModelScope.launch {
+            repository.getDreams().collect{
+                _dreams.value = it
             }
-            if (it % 3 == 1) {
-                dream.entries += DreamEntry(
-                    kind = DreamEntryKind.DEFERRED,
-                    dreamId = dream.id
-                )
-            }
-            if (it % 3 == 2) {
-                dream.entries += DreamEntry(
-                    kind = DreamEntryKind.FULFILLED,
-                    dreamId = dream.id
-                )
-            }
-            dreams += dream
         }
     }
+
+
 }

@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">DreamCatcher</string>
+    <string name="dream_label">Dream</string>
+    <string name="entries_label">Entries</string>
+    <string name="fulfilled">Fulfilled</string>
+    <string name="deferred">Deferred</string>
+    <string name="reflection_count">Reflections: %1$d</string>
+    <string name="last_updated">Last updated %1$s</string>
+    <string name="reflection_text_string_value">Enter Reflection Text</string>
+    <string name="reflection_dialog_title">Add Reflection</string>
+    <string name="reflection_dialog_positive">Add</string>
+    <string name="reflection_dialog_negative">Cancel</string>
+    <string name="new_dream">New Dream</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="no_dreams">No Dreams</string>
+    <string name="share_dream">%1$s\n%2$s\n%3$s\n%4$s</string>
+    <string name="share_dream_status">This dream has been %1$s.</string>
 </resources>

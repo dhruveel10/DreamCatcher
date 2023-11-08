@@ -38,6 +38,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.intent.IntentCallback
 import androidx.test.runner.intent.IntentMonitorRegistry
 import com.google.android.material.R.*
+import com.google.android.material.R.color.material_dynamic_neutral30
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -304,7 +305,7 @@ class P2CTest {
 
         val neutral30color = ContextCompat.getColor(
             InstrumentationRegistry.getInstrumentation().targetContext,
-            color.material_dynamic_neutral30
+            material_dynamic_neutral30
         )
 
         onView(withText("Earn a graduate degree"))
